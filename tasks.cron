@@ -1,0 +1,3 @@
+# do daily/weekly/monthly maintenance
+# min   hour    day     month   weekday command
+03      *       *       *       *       speedtest -s 14604 -f jsonl | grep result | tee -a /root/result.jsonl

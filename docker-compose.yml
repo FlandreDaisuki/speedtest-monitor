@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  speedtest-monitor:
+    restart: unless-stopped
+    image: tianon/speedtest
+    container_name: speedtest-monitor
+    working_dir: /root
+    network_mode: host
+    environment:
+      - TZ=Asia/Taipei
+    volumes:
+      - $PWD:/root
+    command: sh -c "
+      apk add tzdata jq &&
+      touch /root/result.jsonl &&
+      crontab /root/tasks.cron &&
+      crond -f -L /dev/stdout"
