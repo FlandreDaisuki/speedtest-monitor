@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker run --rm -it \
-  -v "$(pwd)/ookla:/root/.config/ookla" \
+  -v "$(pwd):/root" \
   tianon/speedtest
