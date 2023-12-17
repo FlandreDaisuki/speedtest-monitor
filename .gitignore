@@ -1,4 +1,6 @@
 .vscode
 
+.ash_history
 .config/ookla/speedtest-cli.json
 result.jsonl
+result.sqlite3

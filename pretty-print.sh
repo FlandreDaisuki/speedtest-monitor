@@ -2,7 +2,7 @@
 
 DIRNAME="$(dirname "$0")"
 
-docker-compose -f "$DIRNAME/docker-compose.yml" exec speedtest-monitor jq --slurp --raw-output '
+docker compose -f "$DIRNAME/docker-compose.yml" exec speedtest-monitor jq --slurp --raw-output '
 def down_avg: ( map(.download.bandwidth) | add ) / length;
 def up_avg: ( map(.upload.bandwidth) | add ) / length;
 def to_fixed(n): tostring | capture("(?<int>\\d+)?(?<frac>[.]\\d+)?") | "\(.int).\(((.frac // "0") + "0" * n)[1:n+1])";

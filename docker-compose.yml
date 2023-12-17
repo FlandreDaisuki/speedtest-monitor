@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   speedtest-monitor:
     restart: unless-stopped
@@ -9,10 +7,12 @@ services:
     network_mode: host
     environment:
       - TZ=Asia/Taipei
+      - EXPORT_JSONL=true
+      - EXPORT_SQLITE=true
     volumes:
       - $PWD:/root
     command: sh -c "
-      apk add tzdata jq &&
-      touch /root/result.jsonl &&
+      apk add tzdata jq sqlite --no-cache &&
+      chmod +x /root/record.sh &&
       crontab /root/tasks.cron &&
       crond -f -L /dev/stdout"
